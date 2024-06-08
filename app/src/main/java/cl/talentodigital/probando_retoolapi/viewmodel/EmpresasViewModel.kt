@@ -21,8 +21,8 @@ class EmpresasViewModel : ViewModel() {
     val detalleEmpresa = MutableLiveData<EmpresasResponce>()
     val error = MutableLiveData<String>()
 
-    fun listarEmpresas()  {
-            // Implementacion corrutina
+    fun listarEmpresas() {
+        // Implementacion corrutina
         CoroutineScope(Dispatchers.IO).launch {
             try {
                 //llamar API
@@ -37,26 +37,21 @@ class EmpresasViewModel : ViewModel() {
                         if (response.isSuccessful) {
                             val data = response.body()
                             listaEmpresas.postValue(data)
-                    }else {
+                        } else {
                             error.postValue("Error en la API - ${response.errorBody().toString()}")
-
 
                         }
                     }
+
                     override fun onFailure(call: Call<List<EmpresasResponce>>, t: Throwable) {
                         error.postValue("Error de Falla - ${t.message}")
                     }
 
                 })
-            }catch (e: Exception) {
+            } catch (e: Exception) {
                 e.printStackTrace()
                 error.postValue("Error al obtener datos - ${e.message}")
             }
         }
-
-
-
-
-
-        }
     }
+}

@@ -2,6 +2,7 @@ package cl.talentodigital.probando_retoolapi.view.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import cl.talentodigital.probando_retoolapi.databinding.ItemBinding
 import cl.talentodigital.probando_retoolapi.model.EmpresasResponce
@@ -30,6 +31,13 @@ class EmpresaAdapter(
         // Imagen
         Picasso.get().load(empresa.logo).into(holder.binding.logoEmpresa)
 
+        //Configurar el click
+        holder.binding.root.setOnClickListener {
+            Toast.makeText(
+                holder.itemView.context, "Haciendo click en elemento $position",
+                Toast.LENGTH_SHORT
+            ).show()
+        }
     }
 
 
