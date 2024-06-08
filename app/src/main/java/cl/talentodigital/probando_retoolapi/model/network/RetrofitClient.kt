@@ -4,7 +4,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 
-class RetrofitClass {
+class RetrofitClient {
 
     companion object{
         val retrofit = Retrofit.Builder()

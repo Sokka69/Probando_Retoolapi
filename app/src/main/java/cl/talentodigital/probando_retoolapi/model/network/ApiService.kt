@@ -8,9 +8,9 @@ import retrofit2.http.Path
 interface ApiService {
     //Lista de empresas
     @GET("empresas")
-    fun getempresas(): Call<List<EmpresasResponce>>
+    fun getEmpresas(): Call<List<EmpresasResponce>>
 
     @GET("empresas/{id_empresa}")
-    fun detalleempresa(@Path("id_empresa") empresa: Int): Call<EmpresasResponce>
+    fun detalleEmpresa(@Path("id_empresa") empresa: Int): Call<EmpresasResponce>
 
 }
