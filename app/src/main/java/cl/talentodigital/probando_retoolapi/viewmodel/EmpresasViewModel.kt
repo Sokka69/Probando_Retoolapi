@@ -19,7 +19,7 @@ class EmpresasViewModel : ViewModel() {
     // LiveData
     val listaEmpresas = MutableLiveData<List<EmpresasResponce>>()
     val detalleEmpresa = MutableLiveData<EmpresasResponce>()
-    val error = MutableLiveData<String>()
+    val errores = MutableLiveData<String>()
 
     fun listarEmpresas() {
         // Implementacion corrutina
@@ -27,7 +27,7 @@ class EmpresasViewModel : ViewModel() {
             try {
                 //llamar API
                 val responce = RetrofitClient.retrofit.create(ApiService::class.java)
-                val callApi = responce.getEmpresas()
+                val callApi = responce.obtenerEmpresas()
                 callApi.enqueue(object : Callback<List<EmpresasResponce>> {
                     override fun onResponse(
                         call: Call<List<EmpresasResponce>>,
@@ -38,19 +38,19 @@ class EmpresasViewModel : ViewModel() {
                             val data = response.body()
                             listaEmpresas.postValue(data)
                         } else {
-                            error.postValue("Error en la API - ${response.errorBody().toString()}")
+                            errores.postValue("Error en la API - ${response.errorBody().toString()}")
 
                         }
                     }
 
                     override fun onFailure(call: Call<List<EmpresasResponce>>, t: Throwable) {
-                        error.postValue("Error de Falla - ${t.message}")
+                        errores.postValue("Error de Falla - ${t.message}")
                     }
 
                 })
             } catch (e: Exception) {
                 e.printStackTrace()
-                error.postValue("Error al obtener datos - ${e.message}")
+                errores.postValue("Error al obtener datos - ${e.message}")
             }
         }
     }
