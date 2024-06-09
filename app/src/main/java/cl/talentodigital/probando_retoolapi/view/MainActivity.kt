@@ -3,6 +3,7 @@ package cl.talentodigital.probando_retoolapi.view
 import android.os.Bundle
 import android.view.View.GONE
 import android.view.View.VISIBLE
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -41,7 +42,18 @@ class MainActivity : AppCompatActivity() {
             binding.listaEmpresa.visibility = VISIBLE
             binding.progressBar.visibility = GONE
         }
-
+        viewModelEmpresa.errores.observe(this) {
+            binding.listaEmpresa.visibility = GONE
+            binding.progressBar.visibility = GONE
+            // Create AlertDialog
+            val builder = AlertDialog.Builder(this)
+            builder.setMessage(it)
+                .setPositiveButton("OK") { dialog, id ->
+                    dialog.dismiss()
+                }
+            // Create the AlertDialog object and return it.
+            builder.create().show()
+        }
         // Ejecucion de Funciones
         viewModelEmpresa.listarEmpresas()
 

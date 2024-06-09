@@ -1,6 +1,6 @@
 package cl.talentodigital.probando_retoolapi.model
 
-data class EmpresasResponce(
+data class EmpresasResponse(
 
     val id: Int,
     val logo: String,

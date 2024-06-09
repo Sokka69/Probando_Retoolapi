@@ -5,11 +5,11 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import cl.talentodigital.probando_retoolapi.databinding.ItemBinding
-import cl.talentodigital.probando_retoolapi.model.EmpresasResponce
+import cl.talentodigital.probando_retoolapi.model.EmpresasResponse
 import com.squareup.picasso.Picasso
 
 class EmpresaAdapter(
-    private val listasEmpresas: List<EmpresasResponce>
+    private val listasEmpresas: List<EmpresasResponse>
 ) : RecyclerView.Adapter<EmpresaAdapter.EmpresaViewHolder>() {
     class EmpresaViewHolder(val binding: ItemBinding) : RecyclerView.ViewHolder(binding.root)
 
