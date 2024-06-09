@@ -34,6 +34,19 @@ class DetalleEmpresaFragment : Fragment() {
         arguments?.let {
             idEmpresa = it.getInt(ID_EMPRESA)
         }
+    }
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        _binding = FragmentDetalleEmpresaBinding.inflate(inflater, container, false)
+        // Inflate the layout for this fragment
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         //Configuracion ViewModel
         var viewModelEmpresa = ViewModelProvider(this).get(EmpresasViewModel::class.java)
@@ -44,10 +57,10 @@ class DetalleEmpresaFragment : Fragment() {
             binding.txtUbicacionDetalle.text = datosEmpresa.ubicacion
 
             Picasso.get().load(datosEmpresa.logo).into(binding.imagenLogo)
-
         }
         viewModelEmpresa.errores.observe(this) {
 
+        }
             //Configurar click boton
             binding.hacerAlgo.setOnClickListener {
                 val url = "https://www.google.cl"
@@ -55,21 +68,12 @@ class DetalleEmpresaFragment : Fragment() {
                 startActivity(intent)
 
             }
-        }
+
         // Ejecucion de Funciones
         viewModelEmpresa.obtenerDetalleEmpresa(idEmpresa)
 
-
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        _binding = FragmentDetalleEmpresaBinding.inflate(inflater, container, false)
-        // Inflate the layout for this fragment
-        return binding.root
-    }
 
     companion object {
         /**
